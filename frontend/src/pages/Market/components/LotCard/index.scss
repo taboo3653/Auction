@@ -1,0 +1,26 @@
+.lot-card {
+    width: 14rem;
+    margin: 1rem;
+
+
+    align-items: center;
+
+    &__image {
+        width: auto;
+        max-width : 14rem;
+        max-height : 14rem;
+    }
+
+    &__body {
+        width: 100%;
+    }
+
+    &__bottom-container {
+        display: flex;
+        justify-content: space-between; 
+
+        p {
+            margin-bottom: 0;
+        }
+    }
+}
