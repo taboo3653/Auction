@@ -1,5 +1,109 @@
 .lot-auction-bar {
 
+    display: flex;
+    flex-direction: column;
     background: #ECEEEF;
     border-radius: 5px;
+    padding: 1rem;
+
+    &__item {
+        margin: 1rem 1rem 0 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #979797;
+
+        &:last-child {
+            border-bottom: 0px;
+        }
+    
+    }
+
+    
+    .auction-secondary-info {
+        display: flex;
+        flex-direction: column;
+        
+        &__item {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.1rem;
+        }
+    }
+
+    .auction-main-info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
+        &__item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            :last-child{
+                font-size: 1.3rem;
+            }
+        }
+    }
+
+    .bet-maker {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        $button-size: 2.35rem;
+
+        .price-control {
+            display: flex;
+            justify-content: space-between;
+
+            &__value {    
+                background: white;
+                display: flex;
+                width: 100%;
+                align-items: center;
+                justify-content: center;
+
+            }
+
+            &__switcher {
+                width: $button-size;
+                height: $button-size;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+
+                &_left {
+                    border-top-right-radius: 0;
+                }
+
+                &_right {
+                    border-top-left-radius: 0;
+                }
+
+                
+            }  
+        }
+
+        &__apply-button {
+            height: $button-size;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        
+    }
+
+    .bet-list {
+
+        overflow: auto;
+        max-height: 100px;
+
+        &__item {
+            display: flex;
+            padding: 0.25rem 0.75rem; 
+            justify-content: space-between;
+        }
+
+    }
 }
+
+

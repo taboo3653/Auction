@@ -1,5 +1,5 @@
 import React from 'react'
-import LotCard from '../LotCard'
+import { LotCard } from '../'
 
 import "./index.scss"
 

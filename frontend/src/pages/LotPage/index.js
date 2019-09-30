@@ -5,14 +5,14 @@ import './index.scss';
 
 const LotPage = () => {
     return (
-        <div className = "lot-page page">
+        <section className = "lot-page page">
             <div className = "lot-page__information">
                 <LotInformation />
             </div>
             <div className = "lot-page__auction-bar">
                 <LotAuctionBar />
             </div>
-        </div>
+        </section>
     )
 }
 

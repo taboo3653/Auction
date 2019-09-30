@@ -6,7 +6,7 @@ import './index.scss'
 const LotCard = () => {
     return (
         <Card className = "lot-card">
-            <Card.Img variant="top" className = "lot-card__image" src={require('../../../../assets/img/vase.jpg')} />
+            <Card.Img variant="top" className = "lot-card__image" src={require('../../assets/img/vase.jpg')} />
             <Card.Body className = "lot-card__body">
                 <Card.Title>Card Title</Card.Title>
                 <div className = "lot-card__bottom-container">
