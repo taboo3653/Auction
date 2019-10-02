@@ -3,15 +3,14 @@ import { LotCard } from '../'
 
 import "./index.scss"
 
-const LotCards = () => {
+const LotCards = ({items}) => {
     return (
         <div className = "lot-cards">
-            <LotCard />
-            <LotCard />
-            <LotCard />
-            <LotCard />
-
-            <LotCard />
+            {
+                items.map((item) => (
+                    <LotCard {...item} key = {item._id} />
+                ))
+            }
 
         
         </div>

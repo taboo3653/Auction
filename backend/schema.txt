@@ -1,0 +1,22 @@
+users:
+_id
+name
+email
+password (md5)
+
+
+lots:
+_id
+name
+description
+creator
+start_price
+current_price
+min_step
+finish_time
+
+bids:
+_id
+value
+user
+lot

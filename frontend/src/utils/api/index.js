@@ -1,0 +1,1 @@
+export { default as lotsApi } from './lots.js'

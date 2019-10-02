@@ -12,17 +12,17 @@ import './index.scss'
 
 const PersonalLots = () => {
     return (
-        <Tab.Container defaultActiveKey="my-auctions">
+        <Tab.Container defaultActiveKey="my-lots">
             <Row className="justify-content-md-center">
                     <Nav variant="pills" className="flex-row">
                     <Col sm="auto">
                         <Nav.Item>
-                            <Nav.Link eventKey="my-auctions">Мои аукционы</Nav.Link>
+                            <Nav.Link eventKey="my-lots">Мои аукционы</Nav.Link>
                         </Nav.Item>
                     </Col>
                     <Col sm="auto">
                         <Nav.Item>
-                            <Nav.Link eventKey="auctions-with-part">Аукционы с моими ставками</Nav.Link>
+                            <Nav.Link eventKey="lots-with-part">Аукционы с моими ставками</Nav.Link>
                         </Nav.Item>
                     </Col>
                     </Nav>
@@ -30,10 +30,10 @@ const PersonalLots = () => {
             <Row>
                 <Col>
                     <Tab.Content>
-                        <Tab.Pane eventKey="my-auctions">
+                        <Tab.Pane eventKey="my-lots">
                             <LotCards />
                         </Tab.Pane>
-                        <Tab.Pane eventKey="auctions-with-part">
+                        <Tab.Pane eventKey="lots-with-part">
                             <LotCards />
                         </Tab.Pane>
                     </Tab.Content>
