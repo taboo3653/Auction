@@ -1,19 +1,16 @@
 import React from 'react'
-import { LotInformation } from './components'
-import { LotAuctionBar } from './components'
+import { withRouter } from 'react-router-dom'
+
+import { Lot } from './containers'
+
 import './index.scss';
 
-const LotPage = () => {
+const LotPage = ({location, history}) => {
     return (
-        <section className = "lot-page page">
-            <div className = "lot-page__information">
-                <LotInformation />
-            </div>
-            <div className = "lot-page__auction-bar">
-                <LotAuctionBar />
-            </div>
+        <section className = "lot page">
+           <Lot location = {location} history = {history}/>
         </section>
     )
 }
 
-export default LotPage;
+export default withRouter(LotPage);

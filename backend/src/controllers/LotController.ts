@@ -14,6 +14,23 @@ class LotController {
         return LotController.instance;
     }
 
+    public getLotById = ( req : express.Request, res : express.Response ) => {
+        const id : string = req.params.id;
+
+        LotModel
+        .findById(id)
+        .exec(function (err, lots){
+            if (err) {
+                return res.status(404).json({
+                  message: "Lots not found"
+                });
+              }
+              return res.json(lots);
+        })
+    }
+    
+
+
     public getAll = ( req : express.Request, res : express.Response ) => {
         LotModel
         .find()

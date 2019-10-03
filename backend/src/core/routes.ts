@@ -12,6 +12,7 @@ const createRoutes = (app : express.Express) => {
    app.post('/user/create',  UserController.create);
 
    app.get('/lot', LotController.getAll);
+   app.get('/lot/:id', LotController.getLotById);
    app.post('/lot/create',  LotController.create);
 
   // const lotController = new LotController();

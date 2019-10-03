@@ -46,51 +46,7 @@
         }
     }
 
-    .bet-maker {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        $button-size: 2.35rem;
-
-        .price-control {
-            display: flex;
-            justify-content: space-between;
-
-            &__value {    
-                background: white;
-                display: flex;
-                width: 100%;
-                align-items: center;
-                justify-content: center;
-
-            }
-
-            &__switcher {
-                width: $button-size;
-                height: $button-size;
-                border-bottom-left-radius: 0;
-                border-bottom-right-radius: 0;
-
-                &_left {
-                    border-top-right-radius: 0;
-                }
-
-                &_right {
-                    border-top-left-radius: 0;
-                }
-
-                
-            }  
-        }
-
-        &__apply-button {
-            height: $button-size;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-        }
-
-        
-    }
+    
 
     .bet-list {
 

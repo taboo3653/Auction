@@ -1,2 +1,1 @@
-export { default as LotInformation } from './LotInformation'
-export { default as LotAuctionBar } from './LotAuctionBar'
+export { default as BetMaker } from './BetMaker'

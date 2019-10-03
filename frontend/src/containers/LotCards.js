@@ -2,23 +2,29 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { LotCards as LotCardsComponent } from "../components";
 import { fetchAllLots } from "../redux/actions";
+import Spinner from 'react-bootstrap/Spinner'
+
 
 const LotCards = ({ fetchAllLots, items }) => {
+
+
   useEffect(() => {
     fetchAllLots();
-    // eslint-disable-next-line
-  }, []);
+  }, [fetchAllLots]);
 
-  useEffect(() => {
-    console.log(items);
-  }, [items]);
 
-  return <LotCardsComponent items = {items} />;
-};
+  return (
+    <>
+      {(items && items.length) ?
+        <LotCardsComponent items={items} /> :
+        <Spinner animation="border" />
+      }
+    </>);
+}
 
 export default connect(
-  ({ lots }) => ({
-    items: lots.items
+  ({ market }) => ({
+    items: market.items
   }),
   {
     fetchAllLots

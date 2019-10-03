@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import { LotCard } from '../'
 
 import "./index.scss"
@@ -8,7 +9,10 @@ const LotCards = ({items}) => {
         <div className = "lot-cards">
             {
                 items.map((item) => (
-                    <LotCard {...item} key = {item._id} />
+                    
+                    <Link  to = {"/lot/"+item._id} key = {item._id}>
+                        <LotCard {...item}  />
+                    </Link>
                 ))
             }
 

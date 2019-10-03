@@ -1,27 +1,29 @@
 import React from 'react'
-import Button from 'react-bootstrap/Button'
 import ListGroup from 'react-bootstrap/ListGroup'
 
+import { BetMaker } from '../../components'
+import { connect } from 'react-redux'
 
 import "./index.scss"
 
-const LotAuctionBar = () => {
+const LotAuctionBar = ({ startPrice, currentPrice, minStep, finishTime }) => {
+
     return (
         <div className="lot-auction-bar">
             <div className="lot-auction-bar__item auction-secondary-info">
                 <div className="auction-secondary-info__item">
                     <span>Стартовая цена:</span>
-                    <span>5 BYN</span>
+                    <span>{startPrice + " BYN"}</span>
                 </div>
                 <div className="auction-secondary-info__item">
                     <span>Минимальный шаг цены:</span>
-                    <span>5 BYN</span>
+                    <span>{minStep + " BYN"}</span>
                 </div>
             </div>
             <div className="lot-auction-bar__item auction-main-info">
                 <div className="auction-main-info__item">
                     <span>Текущая цена:</span>
-                    <span>25 BYN</span>
+                    <span>{currentPrice + " BYN"}</span>
                 </div>
                 <div className="auction-main-info__item">
                     <span>До завершения:</span>
@@ -32,16 +34,7 @@ const LotAuctionBar = () => {
 
             </div>
             <div className="lot-auction-bar__item">
-                <div className="bet-maker">
-                    <div className="bet_maker__price-control price-control">
-                        <Button variant="light" className="price-control__switcher price-control__switcher_left">-</Button>
-                        <span className="price-control__value">
-                            30 BYN
-                        </span>
-                        <Button variant="light" className="price-control__switcher price-control__switcher_right">+</Button>
-                    </div>
-                    <Button variant="success" className="bet-maker__apply-button">Сделать ставку</Button>
-                </div>
+                <BetMaker currentPrice = {currentPrice} minStep = {minStep} />
             </div>
             <div className="lot-auction-bar__item">
                 <ListGroup as="ul" className = "bet-list">
@@ -68,5 +61,11 @@ const LotAuctionBar = () => {
     );
 }
 
-
-export default LotAuctionBar;
+export default connect(
+    ({ lot }) => ({
+        startPrice: lot.item.data.start_price,
+        currentPrice: lot.item.data.current_price,
+        minStep: lot.item.data.min_step,
+        finishTime: new Date(lot.item.data.finish_time)
+    })
+)(LotAuctionBar); 
