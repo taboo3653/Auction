@@ -1,42 +1,64 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { MarketPage, LotPage, LotEditPage, Auth, PersonalPage, Page404 } from './pages'
-import { Navbar } from './components';
+import { Navbar } from './containers';
+import { Loader } from './components';
 
-function App() {
+import { fetchUserData } from './redux/actions'
+import { connect } from 'react-redux'
+
+function App({ isAuth, fetchUserData }) {
+
+  if (window.localStorage.token)
+    fetchUserData();
+
   return (
-    <div className="wrapper">
-      <Navbar />
+    (window.localStorage.token && !isAuth) ?
+      <Loader /> :
+      <div className="wrapper">
+        <Navbar />
 
-      <Switch>
-        <Route
-          exact 
-          path='/'
-          component={MarketPage}
-        />
-        <Route
-          path='/lot/:id'
-          component={LotPage}
-        />
-        <Route
-          path='/lot-edit'
-          component={LotEditPage}
-        />
-        <Route
-          exact
-          path={["/signin", "/signup"]}
-          component={Auth}
-        />
-        <Route
-          path='/personal'
-          component={PersonalPage}
-        />
+        <Switch>
+          <Route
+            exact
+            path='/'
+            component={MarketPage}
+          />
+          <Route
+            path='/lot/:id'
+            component={LotPage}
+          />
+          <Route
+            path='/lot-edit'
+            component={LotEditPage}
+          />
+          <Route
+            exact
+            path={["/signin", "/signup"]}
+            render={() =>
+              isAuth ?
+                <Redirect to="/" /> :
+                <Auth />
+            }
+          />
+          <Route
+            path='/personal'
+            render={() =>
+              isAuth ?
+                <PersonalPage /> :
+                <Redirect to="/" />
+            }
+          />
 
-        <Route path="*" component={Page404} status={404} />
+          <Route path="*" component={Page404} status={404} />
 
-      </Switch>
-    </div>
+        </Switch>
+      </div>
+
   );
 }
 
-export default App;
+export default connect(
+  ({ user }) => ({
+    isAuth: !!user.data
+  }), { fetchUserData })(App);

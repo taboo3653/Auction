@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { LotCards } from '../../../../components'
-
 import Tab from 'react-bootstrap/Tab'
 import Nav from 'react-bootstrap/Nav'
 import Row from 'react-bootstrap/Row'
@@ -31,10 +29,10 @@ const PersonalLots = () => {
                 <Col>
                     <Tab.Content>
                         <Tab.Pane eventKey="my-lots">
-                            <LotCards />
+                           
                         </Tab.Pane>
                         <Tab.Pane eventKey="lots-with-part">
-                            <LotCards />
+                           
                         </Tab.Pane>
                     </Tab.Content>
                 </Col>

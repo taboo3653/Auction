@@ -1,6 +1,6 @@
 import { axios } from './../../core'
 
 export default {
-    getAll: () => axios.get('/lot'),
-    getLotById: (id) => axios.get('lot/'+id)
+    getAll: () => axios.get('/lots'),
+    getLotById: (id) => axios.get('lots/'+id)
 }

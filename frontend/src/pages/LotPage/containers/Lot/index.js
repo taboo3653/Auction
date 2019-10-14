@@ -2,8 +2,7 @@ import React, { useEffect } from 'react'
 import { LotInformation, LotAuctionBar } from '../../containers'
 import { connect } from 'react-redux'
 import { fetchLotById, removeLot } from "../../../../redux/actions";
-import Spinner from 'react-bootstrap/Spinner'
-
+import { Loader } from '../../../../components' 
 import "./index.scss"
 
 const Lot = ({ history, location, fetchLotById, removeLot, lot }) => {
@@ -20,7 +19,7 @@ const Lot = ({ history, location, fetchLotById, removeLot, lot }) => {
     return (
         <>
             {(!lot) ?
-                <Spinner animation="border" /> :
+                <Loader /> :
                 <div className="lot">
                     <div className="lot__information">
                         <LotInformation />

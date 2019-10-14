@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 
-const reducers = ['market','lot'];
+const reducers = ['market','lot','user'];
 
 export default combineReducers(
   reducers.reduce((initial, name) => {

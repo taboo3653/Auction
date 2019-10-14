@@ -6,11 +6,11 @@ const setLot = (items) => ({
     payload: items
 })
 
-export const fetchLotById =  (id) => async dispatch => {
+export const fetchLotById =  (id) =>  async (dispatch) => {
         const data = await lotsApi.getLotById(id);
         dispatch(setLot(data));
-      
 }
+
 
 export const removeLot =  () => async dispatch => {
         dispatch(setLot(null));

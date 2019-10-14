@@ -11,17 +11,36 @@
   "author": "Agafonov Nikita",
   "license": "ISC",
   "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/dotenv": "^6.1.1",
     "@types/express": "^4.17.1",
+    "@types/jsonwebtoken": "^8.3.4",
     "@types/mongoose": "^5.5.18",
     "@types/node": "^12.7.8",
+    "@types/nodemailer": "^6.2.1",
+    "@types/passport-jwt": "^3.0.2",
+    "@types/passport-local": "^1.0.33",
+    "@types/socket.io": "^2.1.3",
     "nodemon": "^1.19.2",
     "ts-node": "^8.4.1"
   },
   "dependencies": {
+    "@sendgrid/mail": "^6.4.0",
+    "@types/mongoose-unique-validator": "^1.0.3",
+    "await-to-js": "^2.1.1",
+    "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
+    "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "express-validator": "^6.2.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.1",
+    "mongoose-unique-validator": "^2.0.3",
+    "nodemailer": "^6.3.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "socket.io": "^2.3.0",
     "typescript": "^3.6.3"
   }
 }

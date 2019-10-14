@@ -1,19 +1,27 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
-import { LoginForm, RegisterForm } from './components'
+import { Route, withRouter } from 'react-router-dom'
+import { LoginForm, RegisterForm } from './containers'
 import './index.scss'
 
-const Auth = () => {
+const Auth = ({ history }) => {
     return (
-        <section className = "page">
-            <div className = "auth">
-               <div className = "auth__content">
-                    <Route exact path="/signin" component={LoginForm} />
-                    <Route exact path="/signup" component={RegisterForm} />
+        <section className="page">
+            <div className="auth">
+                <div className="auth__content">
+                    <Route 
+                        exact 
+                        path="/signin" 
+                        render = { () => <LoginForm /> }
+                        />
+                    <Route
+                        exact
+                        path="/signup"
+                        render = { () => <RegisterForm /> }
+                        />
                 </div>
             </div>
         </section>
     );
 }
 
-export default Auth;
+export default withRouter(Auth);

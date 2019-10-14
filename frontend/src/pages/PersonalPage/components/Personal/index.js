@@ -1,12 +1,13 @@
 import React from 'react'
-import { PersonalInfo, PersonalLots } from '../'
-
+import {  PersonalLots } from '../'
+import { PersonalInfo } from '../../containers'
+ 
 import './index.scss'
 
 const Personal = () => {
     return (
         <div className = "personal">
-            <div className = "personal__item"><PersonalInfo /></div>
+            <div className = "personal__item info-block"><PersonalInfo /></div>
             <div className = "personal__item"><PersonalLots /></div>
         </div>
     );

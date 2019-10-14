@@ -1,17 +1,14 @@
 import express from 'express'
+import socket from "socket.io";
+
 import { LotModel } from '../models'
 
 class LotController {
 
-    private static instance : LotController;
+    io : socket.Server;
 
-    private constructor() {}
-    
-    public static getInstance() : LotController {
-        if (!LotController.instance)
-            LotController.instance = new LotController();
-
-        return LotController.instance;
+    constructor(io : socket.Server) {
+        this.io = io;
     }
 
     public getLotById = ( req : express.Request, res : express.Response ) => {
@@ -29,8 +26,6 @@ class LotController {
         })
     }
     
-
-
     public getAll = ( req : express.Request, res : express.Response ) => {
         LotModel
         .find()
@@ -55,13 +50,13 @@ class LotController {
             finish_time: req.body.finish_time
         }
 
-
         const lot = new LotModel(postDate);
         
         lot
         .save()
         .then( obj => {
-            res.json(obj)
+            res.json(obj);
+            this.io.emit('SERVER:LOT_ADDED');
         })
         .catch( reason => {
             res.status(500).json({
@@ -74,4 +69,4 @@ class LotController {
     }
 }
 
-export default LotController.getInstance();
+export default LotController;

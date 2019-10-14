@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const url = `mongodb+srv://taboo3653:4XyyRo5toA4efgAn@cluster0-lzoyv.mongodb.net/auction`
+const url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0-lzoyv.mongodb.net/auction`
 
 mongoose.connect(url, {
   useNewUrlParser: true,

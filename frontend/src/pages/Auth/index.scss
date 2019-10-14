@@ -1,5 +1,5 @@
 .auth {
-    position: fixed;
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,6 +10,15 @@
 
     &__content {
         width: 300px;
+        position: relative;
+
+        .server-errors {
+            position: absolute;
+            width: 300px;
+            margin-top: 1rem;
+            font-size: 80%;
+            color: #dc3545;
+        }
     }
 
     button {

@@ -1,0 +1,13 @@
+.form-text-field {
+    position: relative;
+    
+    &__error {
+        position: absolute;
+        margin : 0;
+        margin-left: 0.5rem;
+        left: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+
+    }
+}
