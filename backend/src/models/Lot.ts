@@ -7,10 +7,10 @@ export interface ILot extends Document {
         type : Schema.Types.ObjectId;
         ref : string;
     };*/
-    start_price: number;
-    current_price: number;
-    min_step: number;
-    finish_time: Date;
+    startPrice: number;
+    currentPrice: number;
+    minStep: number;
+    finishTime: Date;
 }
 
 const LotSchema = new Schema (
@@ -25,22 +25,22 @@ const LotSchema = new Schema (
             ref : "User", 
             requierd: true
         },*/
-        start_price: {
+        startPrice: {
             type : Number,
             min : 1,
             required : true
         },
-        current_price: {
+        currentPrice: {
             type : Number,
             min : 1,
             required: true
         },
-        min_step: {
+        minStep: {
             type : Number,
             min: 1,
             required: true
         },
-        finish_time: {
+        finishTime: {
             type : Date,
             required: true
         }

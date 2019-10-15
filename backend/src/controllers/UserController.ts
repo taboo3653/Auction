@@ -4,7 +4,6 @@ import { UserModel, IUserModel } from '../models'
 import { asyncHandler } from '../utils'
 import {  HtmlError } from '../utils/errors'
 import mailer from '../core/mailer'
-import to from 'await-to-js';
 
 
 
@@ -49,7 +48,7 @@ class UserController {
 
         mailer.sendMail(msg);
   
-        res.json(data)
+        res.status(201).json(data)
     })
 
     public verify = asyncHandler(async (req: express.Request, res: express.Response, next: express.NextFunction) => {

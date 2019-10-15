@@ -13,9 +13,6 @@ const usersRouter = () =>{
     router.post('/signin', loginUserValidation, userController.login);
     router.get('/me', checkAuth, userController.getMe);
 
-
-   
-
     return router;
 }
 

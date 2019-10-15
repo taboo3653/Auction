@@ -63,9 +63,9 @@ const LotAuctionBar = ({ startPrice, currentPrice, minStep, finishTime }) => {
 
 export default connect(
     ({ lot }) => ({
-        startPrice: lot.item.data.start_price,
-        currentPrice: lot.item.data.current_price,
-        minStep: lot.item.data.min_step,
-        finishTime: new Date(lot.item.data.finish_time)
+        startPrice: lot.item.data.startPrice,
+        currentPrice: lot.item.data.currentPrice,
+        minStep: lot.item.data.minStep,
+        finishTime: new Date(lot.item.data.finishTime)
     })
 )(LotAuctionBar); 

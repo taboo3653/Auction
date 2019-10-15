@@ -8,8 +8,8 @@ const setUserData = (data) => ({
 
 
 export const exitUser = () => dispatch => {
-    dispatch(setUserData(null));
-    delete window.localStorage.token;
+      delete window.localStorage.token;
+      dispatch(setUserData(null));
 }
 
 export const fetchUserData = () => dispatch => {
@@ -19,8 +19,8 @@ export const fetchUserData = () => dispatch => {
         dispatch(setUserData(data));
       })
       .catch(err => {
-        if (err.response.status === 401) {
-          dispatch(exitUser);
+        if (err.response.status === 404) {
+          dispatch(exitUser());
         }
       });
 }
@@ -45,7 +45,6 @@ export const fetchUserSignIn = (postData) => (dispatch) => {
       window.axios.defaults.headers.common['Authorization'] = "Bearer "+ token;
       window.localStorage['token'] = token;
       dispatch(fetchUserData());
-      return data;
     });
 
 }

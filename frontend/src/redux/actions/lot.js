@@ -2,16 +2,16 @@ import { lotsApi } from '../../utils/api'
 
 
 const setLot = (items) => ({
-    type: "LOT:SET_LOT",
-    payload: items
+        type: "LOT:SET_LOT",
+        payload: items
 })
 
-export const fetchLotById =  (id) =>  async (dispatch) => {
-        const data = await lotsApi.getLotById(id);
-        dispatch(setLot(data));
+export const fetchLotById = (id) => (dispatch) => {
+        return lotsApi.getLotById(id)
+                .then((data) => dispatch(setLot(data)));
 }
 
 
-export const removeLot =  () => async dispatch => {
+export const removeLot = () => dispatch => {
         dispatch(setLot(null));
 }

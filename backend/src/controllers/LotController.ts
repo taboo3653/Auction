@@ -1,7 +1,10 @@
 import express from 'express'
 import socket from "socket.io";
 
+import { asyncHandler } from '../utils'
+import { validationResult } from 'express-validator'
 import { LotModel } from '../models'
+import { HtmlError } from '../utils/errors';
 
 class LotController {
 
@@ -11,62 +14,53 @@ class LotController {
         this.io = io;
     }
 
-    public getLotById = ( req : express.Request, res : express.Response ) => {
+    public getLotById = asyncHandler(async ( req : express.Request, res : express.Response, next: express.NextFunction ) => {
         const id : string = req.params.id;
 
-        LotModel
-        .findById(id)
-        .exec(function (err, lots){
-            if (err) {
-                return res.status(404).json({
-                  message: "Lots not found"
-                });
-              }
-              return res.json(lots);
-        })
-    }
-    
-    public getAll = ( req : express.Request, res : express.Response ) => {
-        LotModel
-        .find()
-        .exec(function (err, lots){
-            if (err) {
-                return res.status(404).json({
-                  message: "Lots not found"
-                });
-              }
-              return res.json(lots);
-        })
-    }
-    
-    public create = ( req : express.Request, res : express.Response ) => {
+        const lot = await LotModel.findById(id).exec();
+
+        if(!lot)
+            return next(new HtmlError(404,"Lot not found"));
+       
+        return res.json(lot);
         
-        const postDate = {
+    })
+    
+    public getAll = asyncHandler(async( req : express.Request, res : express.Response, next: express.NextFunction ) => {
+        
+        const lots = await LotModel.find().exec();
+        
+        if (!lots) 
+            return next(new HtmlError(404,"Lots not found"));
+
+        return res.json(lots);
+        
+    })
+    
+    public create = asyncHandler(async( req : express.Request, res : express.Response ) => {
+        
+        const validation = validationResult(req);
+
+        if (!validation.isEmpty())
+        return res.status(422).json({
+            errors: validation.array()
+        })
+
+        const lotDoc = new LotModel({
             name: req.body.name,
             description: req.body.description,
-            start_price: req.body.start_price,
-            current_price: req.body.current_price,
-            min_step: req.body.min_step,
-            finish_time: req.body.finish_time
-        }
-
-        const lot = new LotModel(postDate);
-        
-        lot
-        .save()
-        .then( obj => {
-            res.json(obj);
-            this.io.emit('SERVER:LOT_ADDED');
-        })
-        .catch( reason => {
-            res.status(500).json({
-                status : 'error',
-                message : reason 
-            })
+            startPrice: req.body.startPrice,
+            currentPrice: req.body.currentPrice,
+            minStep: req.body.minStep,
+            finishTime: req.body.finishTime
         });
+        
+        const lot = await lotDoc.save();
 
+        res.status(201).json(lot);
+        this.io.emit('SERVER:LOT_ADDED');
 
-    }
+    })
 }
 
 export default LotController;

@@ -7,13 +7,13 @@ import { Loader } from './components';
 import { fetchUserData } from './redux/actions'
 import { connect } from 'react-redux'
 
-function App({ isAuth, fetchUserData }) {
+function App({ isAuth, token, fetchUserData }) {
 
-  if (window.localStorage.token)
+  if (token)
     fetchUserData();
 
   return (
-    (window.localStorage.token && !isAuth) ?
+    (token && !isAuth) ?
       <Loader /> :
       <div className="wrapper">
         <Navbar />
@@ -60,5 +60,6 @@ function App({ isAuth, fetchUserData }) {
 
 export default connect(
   ({ user }) => ({
-    isAuth: !!user.data
+    isAuth: !!user.data,
+    token : user.token
   }), { fetchUserData })(App);
