@@ -1,12 +1,26 @@
 import React from 'react'
-import ListGroup from 'react-bootstrap/ListGroup'
+import { connect } from 'react-redux'
+
 
 import { BetMaker } from '../../components'
-import { connect } from 'react-redux'
+import { BidList } from '../../containers'
+
+import { RemainTimer } from '../../../../components'
+import { fetchMakeBid } from '../../../../redux/actions'
+import isOverTime from '../../../../utils/isOverTime'
 
 import "./index.scss"
 
-const LotAuctionBar = ({ startPrice, currentPrice, minStep, finishTime }) => {
+const LotAuctionBar = ({ lotId, startPrice, currentPrice, minStep, finishTime, creatorId, userId, fetchMakeBid,bidsIsLoading }) => {
+
+
+    const handleMakeBid = (bidValue) => {
+        fetchMakeBid({
+            value: bidValue,
+            user: userId,
+            lot: lotId
+        });
+    }
 
     return (
         <div className="lot-auction-bar">
@@ -27,32 +41,28 @@ const LotAuctionBar = ({ startPrice, currentPrice, minStep, finishTime }) => {
                 </div>
                 <div className="auction-main-info__item">
                     <span>До завершения:</span>
-                    <span>05:02:01</span>
+                    <span><RemainTimer finishTime = {finishTime} /></span>
                 </div>
             </div>
             <div>
 
             </div>
+            
+            {(
+                userId && 
+                creatorId && 
+                userId !== creatorId && 
+                !isOverTime(finishTime)
+            ) ? (
+                <div className="lot-auction-bar__item">
+                    <BetMaker currentPrice = {currentPrice+minStep} minStep = {minStep} onSubmit = {handleMakeBid} disabled={bidsIsLoading} />
+                </div>
+                ):
+                ''
+            }
+
             <div className="lot-auction-bar__item">
-                <BetMaker currentPrice = {currentPrice} minStep = {minStep} />
-            </div>
-            <div className="lot-auction-bar__item">
-                <ListGroup as="ul" className = "bet-list">
-                    <ListGroup.Item as="li" className = "bet-list__item">
-                        <span>taboo1</span>
-                        <span>25 BYN</span>
-                    </ListGroup.Item>
-                    <ListGroup.Item as="li" className = "bet-list__item">
-                        <span>taboo1</span>
-                        <span>25 BYN</span>
-                    </ListGroup.Item> <ListGroup.Item as="li" className = "bet-list__item">
-                        <span>taboo1</span>
-                        <span>25 BYN</span>
-                    </ListGroup.Item> <ListGroup.Item as="li" className = "bet-list__item">
-                        <span>taboo1</span>
-                        <span>25 BYN</span>
-                    </ListGroup.Item>
-                </ListGroup>
+                <BidList />
             </div>
 
         </div>
@@ -62,10 +72,14 @@ const LotAuctionBar = ({ startPrice, currentPrice, minStep, finishTime }) => {
 }
 
 export default connect(
-    ({ lot }) => ({
-        startPrice: lot.item.data.startPrice,
-        currentPrice: lot.item.data.currentPrice,
-        minStep: lot.item.data.minStep,
-        finishTime: new Date(lot.item.data.finishTime)
-    })
+    ({ lot,user }) => ({
+        lotId: lot.item && lot.item._id,
+        startPrice: lot.item && lot.item.startPrice,
+        currentPrice: lot.item && lot.item.currentPrice,
+        minStep: lot.item && lot.item.minStep,
+        finishTime: lot.item && lot.item.finishTime,
+        creatorId: lot.item && lot.item.creator._id,
+        userId: user.data && user.data._id,
+        bidsIsLoading: lot.bids.isLoading
+    }),{ fetchMakeBid}
 )(LotAuctionBar); 

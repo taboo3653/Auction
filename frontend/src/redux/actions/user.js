@@ -1,4 +1,4 @@
-import { userApi } from '../../utils/api'
+import { usersApi } from '../../utils/api'
 
 
 const setUserData = (data) => ({
@@ -13,7 +13,7 @@ export const exitUser = () => dispatch => {
 }
 
 export const fetchUserData = () => dispatch => {
-    userApi
+    usersApi
       .getMe()
       .then(({ data }) => {
         dispatch(setUserData(data));
@@ -26,7 +26,7 @@ export const fetchUserData = () => dispatch => {
 }
 
 export const fetchUserSignUp = (postData) => (dispatch) => {
-    return userApi.signUp(postData).then(
+    return usersApi.signUp(postData).then(
         () => {
             dispatch(fetchUserSignIn({
                 email : postData.email,
@@ -37,7 +37,7 @@ export const fetchUserSignUp = (postData) => (dispatch) => {
 }
 
 export const fetchUserSignIn = (postData) => (dispatch) => {
-    return userApi
+    return usersApi
     .signIn(postData)
     .then(({ data }) => {
 

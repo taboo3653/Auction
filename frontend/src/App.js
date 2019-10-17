@@ -25,7 +25,7 @@ function App({ isAuth, token, fetchUserData }) {
             component={MarketPage}
           />
           <Route
-            path='/lot/:id'
+            path='/lots/:id'
             component={LotPage}
           />
           <Route

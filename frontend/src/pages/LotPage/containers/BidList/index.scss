@@ -1,0 +1,12 @@
+.bid-list {
+
+    overflow: auto;
+    max-height: 100px;
+
+    &__item {
+        display: flex;
+        padding: 0.25rem 0.75rem; 
+        justify-content: space-between;
+    }
+
+}

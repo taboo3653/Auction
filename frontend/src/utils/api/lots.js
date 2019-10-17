@@ -1,6 +1,7 @@
 import { axios } from './../../core'
 
 export default {
-    getAll: () => axios.get('/lots'),
-    getLotById: (id) => axios.get('lots/'+id)
+    getAllLots: () => axios.get('/lots'),
+    getActiveLots: () => axios.get('/lots?active=true'),
+    getLotById: (id) => axios.get('/lots/'+id)
 }

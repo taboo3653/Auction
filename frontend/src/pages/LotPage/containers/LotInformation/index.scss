@@ -9,4 +9,12 @@
         margin: 3rem 0 3rem 0;
         padding: 1rem;
     }
+
+    &__creator {
+        display: flex;
+        
+        :last-child{
+            margin-left: 1rem;
+        }
+    }
 }

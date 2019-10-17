@@ -24,7 +24,7 @@ const LotCards = ({ fetchAllLots, removeLots, items }) => {
     socket.on('SERVER:LOT_ADDED', fetchData);
     
     return () => {
-      socket.removeListener('SERVER:LOT_ADDED', fetchData);
+      socket.off('SERVER:LOT_ADDED', fetchData);
       removeLots();
     }
 
@@ -37,7 +37,7 @@ const LotCards = ({ fetchAllLots, removeLots, items }) => {
          <div className = "lot-cards">
          {
              items.map((item) => (
-                 <Link  to = {"/lot/"+item._id} key = {item._id}>
+                 <Link  to = {"/lots/"+item._id} key = {item._id}>
                      <LotCard {...item}  />
                  </Link>
              ))

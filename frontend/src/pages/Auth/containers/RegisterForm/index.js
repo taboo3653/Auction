@@ -19,7 +19,7 @@ const RegisterForm = ({ fetchUserSignUp }) => {
                 _.forEach(err.response.data.errors, val => {
                     let message; 
                     if(val.kind && val.kind === 'unique' && val.path && val.path === 'email')
-                        message = 'Пользователь с такоим email уже существует'
+                        message = 'Пользователь с таким email уже существует'
                     else  
                         message = val.message;
 

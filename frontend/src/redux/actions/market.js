@@ -7,7 +7,7 @@ const setMarketLots = (items) => ({
 })
 
 export const fetchAllLots = () => dispatch => {
-  return lotsApi.getAll()
+  return lotsApi.getActiveLots()
     .then(({ data }) => {
       dispatch(setMarketLots(data));
     });

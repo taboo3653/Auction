@@ -3,10 +3,10 @@ import mongoose, { Schema, Document } from 'mongoose'
 export interface ILot extends Document {
     name: string;
     description: string;
-    /*creator: { 
+    creator: { 
         type : Schema.Types.ObjectId;
         ref : string;
-    };*/
+    };
     startPrice: number;
     currentPrice: number;
     minStep: number;
@@ -20,11 +20,11 @@ const LotSchema = new Schema (
             required: true
         },
         description: String,
-       /* creator: {
+        creator: {
             type : Schema.Types.ObjectId, 
             ref : "User", 
-            requierd: true
-        },*/
+            required: true
+        },
         startPrice: {
             type : Number,
             min : 1,

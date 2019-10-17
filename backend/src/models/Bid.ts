@@ -21,12 +21,14 @@ const BidSchema = new Schema (
         user: {
             type : Schema.Types.ObjectId, 
             ref : "User", 
-            requierd: true
+            required: true,
+            index: true
         },
         lot: {
             type : Schema.Types.ObjectId, 
             ref : "Lot", 
-            requierd: true
+            required: true,
+            index : true
         }
 
     }, {

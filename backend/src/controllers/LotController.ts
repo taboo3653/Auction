@@ -3,8 +3,9 @@ import socket from "socket.io";
 
 import { asyncHandler } from '../utils'
 import { validationResult } from 'express-validator'
-import { LotModel } from '../models'
+import { LotModel, ILot } from '../models'
 import { HtmlError } from '../utils/errors';
+import mongoose from 'mongoose'
 
 class LotController {
 
@@ -17,7 +18,12 @@ class LotController {
     public getLotById = asyncHandler(async ( req : express.Request, res : express.Response, next: express.NextFunction ) => {
         const id : string = req.params.id;
 
-        const lot = await LotModel.findById(id).exec();
+        if(!mongoose.Types.ObjectId.isValid(id))
+            return next(new HtmlError(422, "Invalid lot id"))
+
+
+
+        const lot = await LotModel.findById(id).populate('creator','name').exec();
 
         if(!lot)
             return next(new HtmlError(404,"Lot not found"));
@@ -27,9 +33,13 @@ class LotController {
     })
     
     public getAll = asyncHandler(async( req : express.Request, res : express.Response, next: express.NextFunction ) => {
-        
-        const lots = await LotModel.find().exec();
-        
+
+        const isActive = req.query.active;
+
+        const lots = (isActive === 'true') ? 
+        await LotModel.find({finishTime : { $gt : Date.now() }}).exec() :
+        await LotModel.find().exec();
+
         if (!lots) 
             return next(new HtmlError(404,"Lots not found"));
 
@@ -46,9 +56,10 @@ class LotController {
             errors: validation.array()
         })
 
-        const lotDoc = new LotModel({
+        const lotDoc : ILot = new LotModel({
             name: req.body.name,
             description: req.body.description,
+            creator:req.body.creator,
             startPrice: req.body.startPrice,
             currentPrice: req.body.currentPrice,
             minStep: req.body.minStep,
