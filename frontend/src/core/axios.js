@@ -1,9 +1,12 @@
 import axios from "axios";
 
-axios.defaults.baseURL = window.location.origin;
-axios.defaults.headers.common["Authorization"] = "Bearer " + window.localStorage.token;
 
-axios.interceptors.response.use(function (response) {
+const instance = axios.create();
+
+instance.defaults.baseURL = window.location.origin;
+instance.defaults.headers.common["Authorization"] = "Bearer " + window.localStorage.token;
+
+instance.interceptors.response.use(function (response) {
     const date = new Date(response.headers.date);
     
     if(!window.diffTime)
@@ -12,6 +15,6 @@ axios.interceptors.response.use(function (response) {
         return response;
   });
 
-window.axios = axios;
+window.axios = instance;
 
-export default axios;
+export default instance;

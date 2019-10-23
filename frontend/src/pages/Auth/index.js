@@ -5,7 +5,7 @@ import './index.scss'
 
 const Auth = ({ history }) => {
     return (
-        <section className="page">
+        <div className="page">
             <div className="auth">
                 <div className="auth__content">
                     <Route 
@@ -20,7 +20,7 @@ const Auth = ({ history }) => {
                         />
                 </div>
             </div>
-        </section>
+        </div>
     );
 }
 

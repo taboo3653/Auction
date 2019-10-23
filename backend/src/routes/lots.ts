@@ -10,7 +10,7 @@ const lotsRouter = (io: socket.Server) =>{
 
     const router = express.Router();
     
-    router.get('/', lotController.getAll);
+    router.get('/', lotController.getLots);
     router.get('/:id', lotController.getLotById);
     router.post('/', createLotValidation, lotController.create);
     

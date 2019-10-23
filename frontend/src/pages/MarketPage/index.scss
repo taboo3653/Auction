@@ -1,0 +1,22 @@
+.market-page{
+
+    &__add-button {
+        position: fixed;
+        bottom: 10%;
+        right: 10%;
+    }
+
+    .add-button
+    {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 4rem;
+        height: 4rem;
+
+        &_round{
+            border-radius: 50%;
+        }
+    }
+}
+

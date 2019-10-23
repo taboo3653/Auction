@@ -5,12 +5,14 @@ export default (http: http.Server) => {
   const io : socket.Server = socket(http);
 
   io.on('connection', function (socket: socket.Socket) {
+    let roomId :string;
     socket.on('LOT:JOIN', (lotId: string) => {
-      //socket.lotId = lotId;
-      socket.join('LOT/'+lotId);
+      roomId = 'LOT/'+lotId;
+      socket.join(roomId);
     })
-    socket.on('LOT:LEAVE', (lotId: string) => {
-      socket.leave('LOT/'+lotId);
+    socket.on('LOT:LEAVE', () => {
+      if(roomId)
+        socket.leave(roomId);
     })
   });
 

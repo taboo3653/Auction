@@ -2,12 +2,22 @@
     position: relative;
     
     &__error {
-        position: absolute;
         margin : 0;
-        margin-left: 0.5rem;
-        left: 100%;
-        top: 50%;
-        transform: translateY(-50%);
+        
+        &_right {
+            position: absolute;
+            margin-left: 0.5rem;
+            left: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
 
+        &_bottom {
+
+        }
+
+        &_none {
+            display: none;
+        }
     }
 }

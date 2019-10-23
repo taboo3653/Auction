@@ -1,0 +1,18 @@
+.downloaded-image {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    box-sizing: border-box;
+    
+    .close {
+        position: absolute;
+        top: 17px;
+        right: 20px;
+        line-height: 0.75;
+        overflow: hidden;
+    }
+}

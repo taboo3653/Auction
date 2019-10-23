@@ -4,9 +4,9 @@ import './index.scss'
 
 const PersonalPage = () => {
     return (
-    <section className = "page">
+    <div className = "page">
         <Personal />
-    </section>
+    </div>
     );
 }
 

@@ -89,6 +89,7 @@ const RegisterForm = ({ fetchUserSignUp }) => {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     errors={errors.name}
+                                    errorStyle = {FormTextField.errorStyles.right}
                                     isValid={touched.name && !errors.name}
                                     isInvalid={touched.name && !!errors.name}
                                     value={values.name}
@@ -102,6 +103,7 @@ const RegisterForm = ({ fetchUserSignUp }) => {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     errors={errors.email}
+                                    errorStyle = {FormTextField.errorStyles.right}
                                     isValid={touched.email && !errors.email}
                                     isInvalid={touched.email && !!errors.email}
                                     value={values.email}
@@ -115,6 +117,7 @@ const RegisterForm = ({ fetchUserSignUp }) => {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     errors={errors.password}
+                                    errorStyle = {FormTextField.errorStyles.right}
                                     isValid={touched.password && !errors.password}
                                     isInvalid={touched.password && !!errors.password}
                                     value={values.password}
@@ -128,6 +131,7 @@ const RegisterForm = ({ fetchUserSignUp }) => {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     errors={errors.repeatPassword}
+                                    errorStyle = {FormTextField.errorStyles.right}
                                     isValid={touched.repeatPassword && !errors.password && !errors.repeatPassword}
                                     isInvalid={touched.repeatPassword && !!errors.repeatPassword}
                                     value={values.repeatPassword}

@@ -7,9 +7,9 @@ import './index.scss';
 
 const LotPage = ({location, history}) => {
     return (
-        <section className = "lot page">
+        <div className = "lot page">
            <Lot location = {location} history = {history}/>
-        </section>
+        </div>
     )
 }
 

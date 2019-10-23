@@ -19,6 +19,8 @@ export const fetchUserData = () => dispatch => {
         dispatch(setUserData(data));
       })
       .catch(err => {
+        if(!err.response)
+          throw err;
         if (err.response.status === 404) {
           dispatch(exitUser());
         }

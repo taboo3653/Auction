@@ -1,15 +1,15 @@
 import React from 'react'
-import { LotEdit } from './components'
+import { LotEdit } from './containers'
+import { withRouter } from 'react-router-dom'
+
 import './index.scss';
 
-const LotEditPage = () => {
+const LotEditPage = ({location,history}) => {
     return (
-        <section className = "page">
-            <div className = "lot-edit-container">
-                <LotEdit />
-            </div>
-        </section>
+        <div className = "page">
+                <LotEdit location= {location} history = {history} />
+        </div>
     )
 }
 
-export default LotEditPage;
+export default withRouter(LotEditPage);

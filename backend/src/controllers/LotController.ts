@@ -3,7 +3,7 @@ import socket from "socket.io";
 
 import { asyncHandler } from '../utils'
 import { validationResult } from 'express-validator'
-import { LotModel, ILot } from '../models'
+import { BidModel, IBid, LotModel, ILot } from '../models'
 import { HtmlError } from '../utils/errors';
 import mongoose from 'mongoose'
 
@@ -32,18 +32,35 @@ class LotController {
         
     })
     
-    public getAll = asyncHandler(async( req : express.Request, res : express.Response, next: express.NextFunction ) => {
+    public getLots = asyncHandler(async( req : express.Request, res : express.Response, next: express.NextFunction ) => {
 
         const isActive = req.query.active;
+        const creator = req.query.creator;
 
-        const lots = (isActive === 'true') ? 
-        await LotModel.find({finishTime : { $gt : Date.now() }}).exec() :
-        await LotModel.find().exec();
+        const lotsDocQuery = (isActive === 'true') ? 
+        LotModel.find({finishTime : { $gt : Date.now() }}) :
+        LotModel.find()
 
-        if (!lots) 
+        if(creator &&  mongoose.Types.ObjectId.isValid(creator))
+        lotsDocQuery.find({creator : creator})
+
+        const lots = await lotsDocQuery.exec();
+
+        if (lots.length === 0) 
             return next(new HtmlError(404,"Lots not found"));
 
-        return res.json(lots);
+
+        const lotsWithMaxBid = await Promise.all(lots.map( async (lot) => {
+            const bids = await BidModel.find({lot:lot._id}).sort({value:-1}).exec();
+
+            const currentPrice = (bids.length !== 0) ?  bids[0].value: lot.startPrice;
+
+            return {...lot.toObject(), currentPrice}
+
+        }))
+
+
+        return res.json(lotsWithMaxBid);
         
     })
     
@@ -61,9 +78,9 @@ class LotController {
             description: req.body.description,
             creator:req.body.creator,
             startPrice: req.body.startPrice,
-            currentPrice: req.body.currentPrice,
             minStep: req.body.minStep,
-            finishTime: req.body.finishTime
+            finishTime: req.body.finishTime,
+            images: req.body.images
         });
         
         const lot = await lotDoc.save();

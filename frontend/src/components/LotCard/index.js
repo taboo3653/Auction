@@ -1,15 +1,21 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card'
 import { RemainTimer } from '../'
-
+import getSizedImageUrl from '../../utils/getSizedImageUrl'
+import {emptyImgUrl} from '../../utils/variables'
 
 import './index.scss'
 
-const LotCard = ({name, finishTime, currentPrice}) => {
+const LotCard = ({name, finishTime, currentPrice, images}) => {
+
+    const imageSrc = (images && images.length > 0)? images[0]:emptyImgUrl;
+    const src = getSizedImageUrl(imageSrc, 250);
 
     return (
         <Card className = "lot-card">
-            <Card.Img variant="top" className = "lot-card__image" src={require('../../assets/img/vase.jpg')} />
+            <div className="lot-card__image">
+                <Card.Img variant="top"  src={src} />
+            </div>
             <Card.Body className = "lot-card__body">
                 <Card.Title>{name}</Card.Title>
                 <div className = "lot-card__bottom-container">

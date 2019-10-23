@@ -27,20 +27,31 @@ export const fetchLotById = (id) => (dispatch) => {
                 .then((responce) => dispatch(setLot(responce.data)));
 }
 
+export const fetchCreateLot = (postData, id) => (dispatch) => {
+        if (id)
+                return lotsApi.editLot(postData,id)          
+        else 
+                return lotsApi.createLot(postData)
+}
+
+
 
 export const removeLot = () => dispatch => {
         dispatch(setLot(null));
 }
 
-export const removeBids = (lotId) => dispatch => {
-        socket.emit("LOT:LEAVE",lotId);
+export const removeBids = () => dispatch => {
+        socket.emit("LOT:LEAVE");
         dispatch(setBids(null));
 }
 
 export const fetchMakeBid = (postData) => (dispatch) => {
         dispatch(setBidsLoading(true));
         return bidsApi.createBid(postData)
-                .catch(()=>dispatch(setBidsLoading(false)));
+                .catch((err)=> {
+                        dispatch(setBidsLoading(false));
+                        throw err;
+                });
 }
 
 export const fetchBidsByLot = (lotId) => (dispatch) => {

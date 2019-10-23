@@ -1,16 +1,15 @@
 import React from 'react'
-import Image from 'react-bootstrap/Image'
 import { connect } from 'react-redux'
-
+import { LotCarousel } from '../../components'
 import './index.scss'
 
-const LotInformation = ({ name, description,creatorName }) => {
+const LotInformation = ({ name, description,creatorName, images }) => {
 
     return (
         <div className = "lot-information">
                 <h1>{name}</h1>
                 <div className = "lot-information__image-container">
-                    <Image src={require('../../../../assets/img/vase.jpg')} />
+                    <LotCarousel imagesSrc={images}/>
                 </div>
                 <div className = "lot-information__creator">
                     <strong>Продавец:</strong>
@@ -29,7 +28,8 @@ export default connect(
         {
             name: lot.item && lot.item.name,
             description: lot.item && lot.item.description,
-            creatorName: lot.item && lot.item.creator.name
+            creatorName: lot.item && lot.item.creator.name,
+            images: lot.item && lot.item.images
         }
     )
 )(LotInformation); 

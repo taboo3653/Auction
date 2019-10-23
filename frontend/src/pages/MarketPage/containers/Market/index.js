@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { Link } from 'react-router-dom';
-import { LotCard, Loader} from '../../components'
-import { fetchAllLots, removeLots } from "../../redux/actions";
-import { socket } from '../../core'
+import { LotCards, Loader} from '../../../../components'
+import { fetchAllLots, removeLots } from "../../../../redux/actions";
+import { socket } from '../../../../core'
 
 import "./index.scss"
 
 
-const LotCards = ({ fetchAllLots, removeLots, items }) => {
+const Market = ({ fetchAllLots, removeLots, items }) => {
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -34,15 +33,8 @@ const LotCards = ({ fetchAllLots, removeLots, items }) => {
   return (
     <>
       {(!isLoading) ? (
-         <div className = "lot-cards">
-         {
-             items.map((item) => (
-                 <Link  to = {"/lots/"+item._id} key = {item._id}>
-                     <LotCard {...item}  />
-                 </Link>
-             ))
-         }
-      </div>):
+        <LotCards items = {items} />
+        ):
         <Loader />
       }
     </>);
@@ -56,4 +48,4 @@ export default connect(
     fetchAllLots,
     removeLots
   }
-)(LotCards);
+)(Market);

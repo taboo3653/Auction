@@ -2,9 +2,7 @@
 
     display: flex;
     flex-direction: column;
-    background: #ECEEEF;
-    border-radius: 5px;
-    padding: 1rem;
+
 
     &__item {
         margin: 1rem 1rem 0 1rem;
@@ -14,37 +12,17 @@
         &:last-child {
             border-bottom: 0px;
         }
-    
-    }
 
-    
-    .auction-secondary-info {
-        display: flex;
-        flex-direction: column;
-        
-        &__item {
+        .lot-auction-bar-winner{
             display: flex;
-            justify-content: space-between;
-            margin: 0.1rem;
-        }
-    }
-
-    .auction-main-info {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-
-        &__item {
-            display: flex;
-            flex-direction: column;
             justify-content: center;
-            align-items: center;
-
-            :last-child{
-                font-size: 1.3rem;
-            }
+            font-size: 1.3rem;
         }
+    
     }
+
+    
+      
 
     
 

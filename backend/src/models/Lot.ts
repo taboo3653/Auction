@@ -8,9 +8,9 @@ export interface ILot extends Document {
         ref : string;
     };
     startPrice: number;
-    currentPrice: number;
     minStep: number;
     finishTime: Date;
+    images: Array<string>;
 }
 
 const LotSchema = new Schema (
@@ -30,11 +30,6 @@ const LotSchema = new Schema (
             min : 1,
             required : true
         },
-        currentPrice: {
-            type : Number,
-            min : 1,
-            required: true
-        },
         minStep: {
             type : Number,
             min: 1,
@@ -43,6 +38,9 @@ const LotSchema = new Schema (
         finishTime: {
             type : Date,
             required: true
+        },
+        images: {
+            type : Array,
         }
     }, {
         timestamps: true

@@ -6,9 +6,12 @@
     align-items: center;
 
     &__image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: auto;
         max-width : 14rem;
-        max-height : 14rem;
+        height : 14rem;
     }
 
     &__body {
