@@ -27,12 +27,6 @@ export const fetchLotById = (id) => (dispatch) => {
                 .then((responce) => dispatch(setLot(responce.data)));
 }
 
-export const fetchCreateLot = (postData, id) => (dispatch) => {
-        if (id)
-                return lotsApi.editLot(postData,id)          
-        else 
-                return lotsApi.createLot(postData)
-}
 
 
 

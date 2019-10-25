@@ -86,7 +86,7 @@ const LoginForm = ({ fetchUserSignIn }) => {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     errors={errors.email}
-                                    errorStyle = {FormTextField.errorStyles.right}
+                                    errorStyle = {FormTextField.errorStyles.bottom}
                                     isValid={touched.email && !errors.email}
                                     isInvalid={touched.email && !!errors.email}
                                     value={values.email}
@@ -100,7 +100,7 @@ const LoginForm = ({ fetchUserSignIn }) => {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     errors={errors.password}
-                                    errorStyle = {FormTextField.errorStyles.right}
+                                    errorStyle = {FormTextField.errorStyles.bottom}
                                     isValid={touched.password && !errors.password}
                                     isInvalid={touched.password && !!errors.password}
                                     value={values.password}

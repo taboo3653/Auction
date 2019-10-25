@@ -37,12 +37,18 @@ const Lot = ({ history, location, fetchLotById, removeLot, lot, bids, lotId, fet
         <>
             {(!lot || !bids) ?
                 <Loader /> :
-                <div className="lot">
-                    <div className="lot__information">
-                        <LotInformation />
-                    </div>
-                    <div className="lot__auction-bar">
-                        <LotAuctionBar />
+                <div className="lot container">
+                    <div className ="row">
+                        <div className = "col-lg-7 mt-3 mb-3">
+                            <div className="lot__information">
+                                <LotInformation />
+                            </div>
+                        </div>
+                        <div className = "col-lg-5 mt-3 mb-3"> 
+                            <div className="lot__auction-bar">
+                                <LotAuctionBar />
+                            </div>
+                        </div>
                     </div>
                 </div> 
             }

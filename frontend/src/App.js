@@ -15,9 +15,8 @@ function App({ isAuth, token, fetchUserData }) {
   return (
     (token && !isAuth) ?
       <Loader /> :
-      <div className="wrapper">
+      <>
         <Navbar />
-
         <Switch>
           <Route
             exact
@@ -53,8 +52,7 @@ function App({ isAuth, token, fetchUserData }) {
           <Route path="*" component={Page404} status={404} />
 
         </Switch>
-      </div>
-
+    </>
   );
 }
 

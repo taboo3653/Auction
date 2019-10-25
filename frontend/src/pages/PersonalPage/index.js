@@ -1,5 +1,5 @@
 import React from 'react'
-import { Personal } from './components'
+import { Personal } from './containers'
 import './index.scss'
 
 const PersonalPage = () => {

@@ -36,6 +36,7 @@ class LotController {
 
         const isActive = req.query.active;
         const creator = req.query.creator;
+        const participant = req.query.participant;
 
         const lotsDocQuery = (isActive === 'true') ? 
         LotModel.find({finishTime : { $gt : Date.now() }}) :
@@ -44,6 +45,13 @@ class LotController {
         if(creator &&  mongoose.Types.ObjectId.isValid(creator))
         lotsDocQuery.find({creator : creator})
 
+        /*
+        if(participant &&  mongoose.Types.ObjectId.isValid(participant))
+        {
+            const bids = await BidModel.find({user: participant}).distinct('lot').exec();
+
+            lotsDocQuery.find({_id:bids})
+        }*/
         const lots = await lotsDocQuery.exec();
 
         if (lots.length === 0) 
@@ -86,6 +94,31 @@ class LotController {
         const lot = await lotDoc.save();
 
         res.status(201).json(lot);
+        this.io.emit('SERVER:LOT_ADDED');
+
+    })
+
+    public edit = asyncHandler(async( req : express.Request, res : express.Response ) => {
+        
+        const validation = validationResult(req);
+
+        if (!validation.isEmpty())
+        return res.status(422).json({
+            errors: validation.array()
+        })
+
+        const lot = await LotModel.findByIdAndUpdate(req.params.id, {
+            name: req.body.name,
+            description: req.body.description,
+            creator:req.body.creator,
+            startPrice: req.body.startPrice,
+            minStep: req.body.minStep,
+            finishTime: req.body.finishTime,
+            images: req.body.images
+        });
+
+
+        res.status(200).json(lot);
         this.io.emit('SERVER:LOT_ADDED');
 
     })

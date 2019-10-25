@@ -1,16 +1,34 @@
-import React from 'react'
+import React  from 'react'
+import { Link } from 'react-router-dom'
 
-import Tab from 'react-bootstrap/Tab'
-import Nav from 'react-bootstrap/Nav'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-
+import {LotCards} from '../../../../components'
+import Button from 'react-bootstrap/Button'
 
 import './index.scss'
 
-const PersonalLots = () => {
+const PersonalLots = ({creatorLots}) => {
+
+
     return (
-        <Tab.Container defaultActiveKey="my-lots">
+        
+        <>
+        <div className = "row justify-content-center">
+            <Button  
+                    variant="primary"
+                    as={Link}
+                    to="lot-edit">
+                    Создать лот
+                </Button>
+        </div>
+        <LotCards items ={creatorLots} />
+        </>
+
+
+      
+
+    );
+
+     /* <Tab.Container defaultActiveKey="my-lots">
             <Row className="justify-content-md-center">
                     <Nav variant="pills" className="flex-row">
                     <Col sm="auto">
@@ -29,7 +47,6 @@ const PersonalLots = () => {
                 <Col>
                     <Tab.Content>
                         <Tab.Pane eventKey="my-lots">
-                           
                         </Tab.Pane>
                         <Tab.Pane eventKey="lots-with-part">
                            
@@ -37,9 +54,7 @@ const PersonalLots = () => {
                     </Tab.Content>
                 </Col>
             </Row>
-        </Tab.Container>
-
-    );
+    </Tab.Container>*/
 }
 
 

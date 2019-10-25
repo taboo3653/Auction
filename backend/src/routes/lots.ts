@@ -13,7 +13,7 @@ const lotsRouter = (io: socket.Server) =>{
     router.get('/', lotController.getLots);
     router.get('/:id', lotController.getLotById);
     router.post('/', createLotValidation, lotController.create);
-    
+    router.put('/:id', createLotValidation, lotController.edit)
     return router;
 }
 

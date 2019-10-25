@@ -1,6 +1,4 @@
 import React from "react";
-
-import { Link } from 'react-router-dom';
 import { LotCard} from '../../components'
 
 import "./index.scss"
@@ -9,14 +7,17 @@ import "./index.scss"
 const LotCards = ({ items }) => {
 
   return (
-         <div className = "lot-cards">
+         <div className = "lot-cards container">
+           <div className ="row justify-content-center">
          {
              items.map((item) => (
-                 <Link  to = {"/lots/"+item._id} key = {item._id}>
-                     <LotCard {...item}  />
-                 </Link>
+               
+                     <LotCard key = {item._id} {...item}  />
              ))
+
+             
          }
+         </div>
       </div>
     );
 }

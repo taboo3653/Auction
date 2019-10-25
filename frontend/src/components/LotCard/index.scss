@@ -1,5 +1,5 @@
 .lot-card {
-    width: 14rem;
+ //   width: 14rem;
     margin: 1rem;
 
 
@@ -10,12 +10,29 @@
         justify-content: center;
         align-items: center;
         width: auto;
-        max-width : 14rem;
         height : 14rem;
     }
 
     &__body {
         width: 100%;
+        position: relative;
+
+        .edit-button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: transparent;
+            border:0;
+            -webkit-appearance:none;
+            font-size: 1.5rem;
+            line-height: 1;
+            opacity: 0.5;
+            padding: 0;
+
+            &:hover{
+                opacity: 0.75;
+            }
+        }
     }
 
     &__bottom-container {
