@@ -22,5 +22,8 @@
   "homepage": "https://github.com/taboo3653/auction#readme",
   "dependencies": {
     "concurrently": "^4.1.2"
+  },
+  "engines": {
+    "node": ">=10.0.0"
   }
 }
