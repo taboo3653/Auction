@@ -12,13 +12,17 @@ const LotAuctionBar = ({ lotId, startPrice, currentPrice, minStep, finishTime, c
 
 
     const handleMakeBid = (bidValue, showTooltip) => {
+        if(!userId)
+            return showTooltip("Необходимо зарегистрироваться");
+
+
         fetchMakeBid({
             value: bidValue,
             user: userId,
             lot: lotId
         }).catch((err)=> {
             if(err.response.data.message === "Too little bid")
-                showTooltip(true);
+                showTooltip("Ставка слишком низкая");
         });
     }
 
@@ -32,7 +36,6 @@ const LotAuctionBar = ({ lotId, startPrice, currentPrice, minStep, finishTime, c
             </div>
             
             {(
-                userId && 
                 creatorId && 
                 userId !== creatorId && 
                 !isOverTime(finishTime)

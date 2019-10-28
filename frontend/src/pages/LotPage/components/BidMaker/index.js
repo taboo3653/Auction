@@ -8,13 +8,13 @@ const BidMaker = ({ currentPrice : minPrice, minStep, onSubmit, disabled }) => {
     
     const [price, setPrice] = useState(minPrice);
 
-    const [showTooltip, setShowTooltip] = useState(false);
+    const [showTooltip, setShowTooltip] = useState("");
     const submitRef = useRef(null);
 
 
     useEffect(()=>{
         if(showTooltip)
-           setTimeout(()=>{setShowTooltip(false)}, 2000) 
+           setTimeout(()=>{setShowTooltip("")}, 2000) 
     },[showTooltip]);
 
     const handlePlusClick = () => {
@@ -53,7 +53,7 @@ const BidMaker = ({ currentPrice : minPrice, minStep, onSubmit, disabled }) => {
             <Overlay target={submitRef.current} show={showTooltip} placement="left">
                 {props => (
                     <Tooltip id="bid-maker-tooltip" {...props} show = {props.show.toString()}>
-                        Ставка слишком низкая
+                        {showTooltip}
                     </Tooltip>
                 )}
             </Overlay>

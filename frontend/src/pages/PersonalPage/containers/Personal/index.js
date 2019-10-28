@@ -8,14 +8,14 @@ import {fetchCreatorLots, removePersonalLots} from '../../../../redux/actions'
 
 import './index.scss'
 
-const Personal = ({creatorLots, fetchCreatorLots, removePersonalLots}) => {
+const Personal = ({creatorLots, fetchCreatorLots, removePersonalLots,userId}) => {
 
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
       const fetchData = () => {
         setIsLoading(true);
-        fetchCreatorLots().finally(() => setIsLoading(false))
+        fetchCreatorLots(userId).finally(() => setIsLoading(false))
       }
   
       fetchData();
@@ -24,7 +24,7 @@ const Personal = ({creatorLots, fetchCreatorLots, removePersonalLots}) => {
           removePersonalLots();
       }
   
-    }, [fetchCreatorLots, removePersonalLots]);
+    }, [fetchCreatorLots, removePersonalLots,userId]);
   
     
     return (
@@ -40,6 +40,7 @@ const Personal = ({creatorLots, fetchCreatorLots, removePersonalLots}) => {
 }
 
 
-export default connect(({personal})=>({
+export default connect(({personal, user})=>({
+    userId: user.data && user.data._id,
     creatorLots: personal.creatorLots,
 }),{fetchCreatorLots, removePersonalLots})(Personal);

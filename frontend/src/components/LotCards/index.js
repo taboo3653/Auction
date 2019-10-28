@@ -4,7 +4,7 @@ import { LotCard} from '../../components'
 import "./index.scss"
 
 
-const LotCards = ({ items }) => {
+const LotCards = ({ items, editable = false }) => {
 
   return (
          <div className = "lot-cards container">
@@ -12,7 +12,7 @@ const LotCards = ({ items }) => {
          {
              items.map((item) => (
                
-                     <LotCard key = {item._id} {...item}  />
+                     <LotCard key = {item._id} editable = {editable} {...item} />
              ))
 
              

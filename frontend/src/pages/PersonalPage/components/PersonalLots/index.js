@@ -20,7 +20,7 @@ const PersonalLots = ({creatorLots}) => {
                     Создать лот
                 </Button>
         </div>
-        <LotCards items ={creatorLots} />
+        <LotCards items ={creatorLots} editable = {true} />
         </>
 
 

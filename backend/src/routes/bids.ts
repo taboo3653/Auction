@@ -12,8 +12,7 @@ const bidsRouter = (io: socket.Server) =>{
     const router = express.Router();
     
     router.get('/', bidController.getBids);
-   // router.get('/:id', bidController.getLotById);
-    router.post('/',createBidValidation,  bidController.create);
+    router.post('/',checkAuth, createBidValidation,  bidController.create);
     
     return router;
 }

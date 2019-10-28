@@ -29,7 +29,11 @@ function App({ isAuth, token, fetchUserData }) {
           />
           <Route
             path='/lot-edit'
-            component={LotEditPage}
+            render={() =>
+              isAuth ?
+                <LotEditPage />:
+                <Redirect to="/404" />
+            }
           />
           <Route
             exact

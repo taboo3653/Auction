@@ -1,7 +1,9 @@
+/// <reference path="./custom.d.ts" />
+
 import express from "express";
 import { verifyJWTToken } from "../utils/JWT";
 import { HtmlError } from '../utils/errors'
-import { IUser } from "../models/User";
+
 
 export default (req: express.Request, res: express.Response, next: express.NextFunction) => {
 

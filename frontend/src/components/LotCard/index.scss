@@ -11,6 +11,10 @@
         align-items: center;
         width: auto;
         height : 14rem;
+
+        .card-img-top {
+            width: auto;
+        }
     }
 
     &__body {
