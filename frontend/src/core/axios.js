@@ -3,7 +3,7 @@ import axios from "axios";
 
 const instance = axios.create();
 
-instance.defaults.baseURL = window.location.origin;
+instance.defaults.baseURL = window.location.origin+'/api';
 instance.defaults.headers.common["Authorization"] = "Bearer " + window.localStorage.token;
 
 instance.interceptors.response.use(function (response) {

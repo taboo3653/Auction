@@ -17,9 +17,9 @@ const createRoutes = (app : express.Express, io: socket.Server) => {
   app.use(bodyParser.urlencoded({ extended: false }))
   app.use(bodyParser.json());
 
-  app.use('/users', usersRouter());
-  app.use('/lots', lotsRouter(io));
-  app.use('/bids', bidsRouter(io));
+  app.use('/api/users', usersRouter());
+  app.use('/api/lots', lotsRouter(io));
+  app.use('/api/bids', bidsRouter(io));
 
   
   app.use((err : any, req: express.Request, res: express.Response, next: express.NextFunction) => {

@@ -22,7 +22,8 @@ if (process.env.NODE_ENV === 'production') {
     app.use(express.static( '../frontend/build' ));
 
     app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '../frontend', 'build', 'index.html')); // relative path
+        const rootPath = __dirname.split('\\').slice(0,-2).join('\\');
+        res.sendFile(path.join(rootPath, 'frontend', 'build', 'index.html')); // relative path
     });
 }
 
